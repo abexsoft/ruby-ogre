@@ -1,0 +1,5 @@
+#!/bin/sh
+
+FILE_PATH=`dirname "$0"`
+
+PATH=$FILE_PATH/../../deps/lib:$FILE_PATH/../../lib:$PATH ruby $FILE_PATH/Sinbad.rb
