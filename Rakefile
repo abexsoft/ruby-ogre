@@ -229,6 +229,7 @@ spec = Gem::Specification.new do |s|
                      'deps/lib/*.dll',
                      'deps/lib/OGRE/*.so*',
                      'deps/lib/OGRE/*.dll',
+                     'deps/include/**/*',
                      'deps/share/OGRE/media/**/*',
                      'sample/Charactor/*.rb',
                      'sample/Charactor/sinbad*',
