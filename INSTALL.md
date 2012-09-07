@@ -4,7 +4,6 @@ Using libraries
 * swig : http://www.swig.org/
 * ois : http://wgois.cvs.sourceforge.net/viewvc/wgois/ois/
 * ogre3d : http://www.ogre3d.org/
-* bullet : http://bulletphysics.org/
 * ogre-procedural: http://code.google.com/p/ogre-procedural/
 
 
