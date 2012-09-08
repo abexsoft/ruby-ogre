@@ -1,6 +1,26 @@
 class OgreConfig
+  def self.getTopDir
+    File.dirname(File.dirname(File.expand_path(__FILE__)))
+  end
+
   def self.getLdLibraryPath
-    File.dirname(File.dirname(File.expand_path(__FILE__))) + "/deps/lib"
+    "#{getTopDir()}/deps/lib"
+  end
+
+  def self.getDepsLibPath
+    "#{getTopDir()}/deps/lib"
+  end
+
+  def self.getDepsIncPath
+    "#{getTopDir()}/deps/include"
+  end
+
+  def self.getIncFlags
+    "-I#{getTopDir()}/deps/include/OGRE/ " +
+    "-I#{getTopDir()}/deps/include/OGRE/GLX/ " +
+    "-I#{getTopDir()}/deps/include/OGRE/Paging/ " +
+    "-I#{getTopDir()}/deps/include/OGRE/RTShaderSystem/ " +
+    "-I#{getTopDir()}/deps/include/OGRE/Terrain "
   end
 
   def self.getLib
@@ -8,10 +28,10 @@ class OgreConfig
   end
 
   def self.getPluginFolder
-    File.dirname(File.dirname(File.expand_path(__FILE__))) + "/deps/lib/OGRE"
+    "#{getTopDir()}/deps/lib/OGRE"
   end
 
   def self.getResourceFolder
-    File.dirname(File.dirname(File.expand_path(__FILE__))) + "/deps/share/OGRE/media/"
+    "#{getTopDir()}/deps/share/OGRE/media/"
   end
 end
