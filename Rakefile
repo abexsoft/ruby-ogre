@@ -41,7 +41,7 @@ task :download_procedural do
   chdir('deps/src') {
     if /mingw/ =~ RUBY_PLATFORM
       sh "wget http://ogre-procedural.googlecode.com/files/OgreProceduralSDK_MingW_v0.2.7z"
-      sh "7z x OgreProceduralSDK_MingW_v0.2.7z"
+      sh "C:\Program Files (x86)\7-Zip\7z.exe x OgreProceduralSDK_MingW_v0.2.7z"
       FileUtils::mkdir_p("./")
       sh "cp -a OgreProceduralSDK_MingW_v0.2/include ../"
       sh "cp -a OgreProceduralSDK_MingW_v0.2/lib ../"
