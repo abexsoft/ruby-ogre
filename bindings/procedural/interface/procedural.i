@@ -35,7 +35,7 @@
 %include ProceduralExtruder.i
 %include ProceduralStableHeaders.i
 %include ProceduralTriangulator.i
-%include Procedural.i
+%include ProceduralHeader.i
 
 %{
 %}
