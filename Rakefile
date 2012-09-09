@@ -59,31 +59,31 @@ desc 'Compile all of libraries.'
 task :compile => [:compile_ois, :compile_ogre, :compile_procedural]
 
 task :compile_ois do
-  chdir("deps/src/ois-v1-3/") {
-    unless /mingw/ =~ RUBY_PLATFORM
+  unless /mingw/ =~ RUBY_PLATFORM
+    chdir("deps/src/ois-v1-3/") {
       sh "sh ./bootstrap"
       sh "./configure --prefix=$PWD/../.."
       sh "make && make install"
-    end
-  }
+    }
+  end
 end
 
 task :compile_ogre do
-  chdir("deps/src/ogre_src_v1-8-0/") {
-    unless /mingw/ =~ RUBY_PLATFORM
+  unless /mingw/ =~ RUBY_PLATFORM
+    chdir("deps/src/ogre_src_v1-8-0/") {
       sh "cmake -DCMAKE_INSTALL_PREFIX:PATH=../.. -DOGRE_INSTALL_SAMPLES:BOOL=ON -DOIS_INCLUDE_DIR:PATH=$PWD/../../include/OIS -DOIS_LIBRARY_DBG:FILEPATH=$PWD/../../lib/libOIS.so -DOIS_LIBRARY_REL:FILEPATH=$PWD/../../lib/libOIS.so -DCMAKE_MODULE_LINKER_FLAGS:STRING='-static-libgcc -static-libstdc++' -DCMAKE_SHARED_LINKER_FLAGS:STRING='-static-libgcc -static-libstdc++'"
       sh "make -j4 && make install"
-    end
-  }
+    }
+  end
 end
 
 task :compile_procedural do
-  chdir("deps/src/ogre-procedural/") {
-    unless /mingw/ =~ RUBY_PLATFORM
+  unless /mingw/ =~ RUBY_PLATFORM
+    chdir("deps/src/ogre-procedural/") {
       sh "OGRE_HOME=../..; OIS_HOME=../..; cmake -DCMAKE_INSTALL_PREFIX:PATH=../.. -DOgreProcedural_BUILD_SAMPLES:BOOL=ON"
       sh "make -j4 && make -i install"
-    end
-  }
+    }
+  end
 end
 
 #
