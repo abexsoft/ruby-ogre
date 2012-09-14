@@ -11,13 +11,12 @@ How to compile all libraries.
 --------------
 1. compile external libraries.
    
-    > $ rake download  
-    > $ rake compile  
+    > $ rake download
+    > $ rake compile:deps 
 
 2. make ruby extension libraries.
 
-    > $ rake copylibs   
-    > $ rake build
+    > $ rake compile:ext
 
 3. install ruby extension libraries and so on.
 
