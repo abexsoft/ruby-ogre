@@ -27,9 +27,15 @@ see [INSTALL.md](https://github.com/abexsoft/ruby-ogre/blob/master/INSTALL.md)
 
 About APIs
 ----
-This is a wrapper library converted by Swig. Swig is a excellent tool, but it has
+This is a wrapper library set converted by Swig. Swig is a excellent tool, but it has
 several limitations to make complete wrapper interfaces.(ex. not supported nested class.)  
 So I list some notes here.
+
+### Documentation for original APIs.
+- [OIS](http://wgois.svn.sourceforge.net/viewvc/wgois/ois/trunk/)
+- [Ogre3D](http://www.ogre3d.org/docs/api/html/index.html)
+- [OgreProcedural](http://manual.ogreprocedural.org/)
+
 
 ### Basic Conversion
     ** C++ **
@@ -48,9 +54,9 @@ Luckily, it does not matter so much because the main classes of Ogre are the top
 
 To be precise, swig has a workaroud for the nested class syntax that expands it
 to a top level class. I tried this (ref. bindings/ogre/interface/OgreResourceGroupManager.i),
-but I'm sorry it was so boring for me to do for all of the nested classes and definitions.
+but it is not introduced for all of the nested classes and definitions.
 
-Please send me (or send a pull request) if you write these swig interface files or have another cool idea =).
+Please send me (or send a pull request) if you write these swig interface files or have another cool idea.
 
 ### Iterator (crazy template)
   There is another swig problem, template expansion. As same as the nested class problem, swig has
@@ -59,9 +65,9 @@ Please send me (or send a pull request) if you write these swig interface files 
 
   Instead, I took a policy to define "each" method on the class with the major iterator.
   (see, bindings/ogre/interface/OgreConfigFile.i::each_Settings). But as same as the nested class problem,
-  I do not seem to have the patience enough to apply to all =).
+  I do not seem to have the patience enough to apply to all.
 
-  Please send me (or send a pull request) if you write these swig interface files or have another cool idea, again.
+  Please send me (or send a pull request) if you write these swig interface files or have another cool idea.
 
      ** C++ **
      Ogre::ConfigFile cf;
