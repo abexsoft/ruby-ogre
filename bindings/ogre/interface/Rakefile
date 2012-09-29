@@ -1,0 +1,22 @@
+SWIG = 'swig'
+
+DEPS_DIR = "../../../deps/"
+load "../../../deps/env.rb"
+
+
+SWIGFLAGS = "-ruby -c++ #{OGRE_INC} -I../src/ -autorename"
+
+TARGET = 'ogre_wrap.cpp'
+
+#puts SWIGFLAGS
+
+task :default => "#{TARGET}"
+
+file "#{TARGET}" => "ogre.i" do |t|
+  sh "#{SWIG} #{SWIGFLAGS} -o  #{t.name} #{t.prerequisites[0]}"
+end
+
+task :clean do
+  sh "rm -f #{TARGET}"
+end
+

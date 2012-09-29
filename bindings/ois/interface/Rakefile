@@ -1,0 +1,22 @@
+SWIG = 'swig'
+
+DEPS_DIR = "../../../deps/"
+load "../../../deps/env.rb"
+
+
+SWIGFLAGS = "-ruby -c++ #{OIS_INC} -autorename"
+
+TARGET = 'ois_wrap.cpp'
+
+#puts SWIGFLAGS
+
+task :default => "#{TARGET}"
+
+file "#{TARGET}" => "ois.i" do |t|
+  sh "#{SWIG} #{SWIGFLAGS} -o  #{t.name} #{t.prerequisites[0]}"
+end
+
+task :clean do
+  sh "rm -f #{TARGET}"
+end
+
