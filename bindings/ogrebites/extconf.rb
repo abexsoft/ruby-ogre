@@ -19,4 +19,4 @@ $srcs = ["interface/ogrebites_wrap.cpp"]
 $objs = $srcs.collect {|o| o.sub(/\.cpp|\.cc|\.cxx/, ".o")}
 $cleanfiles = $objs
 
-create_makefile('OgreBites')
+create_makefile('ogrebites')

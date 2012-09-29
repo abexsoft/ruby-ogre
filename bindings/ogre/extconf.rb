@@ -19,7 +19,7 @@ $srcs = ["interface/ogre_wrap.cpp"]
 $objs = $srcs.collect {|o| o.sub(/\.cpp|\.cc|\.cxx/, ".o")}
 $cleanfiles = $objs
 
-create_makefile('Ogre')
+create_makefile('ogre')
 
 # comment out ruby gettimeofday() of win32.h on windows.
 # comment out ruby struct timezone of missing.h on windows.

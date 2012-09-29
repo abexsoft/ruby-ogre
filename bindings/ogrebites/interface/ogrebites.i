@@ -1,4 +1,4 @@
-%module(directors="1") "OgreBites"
+%module(directors="1") "ogrebites"
 
 #define _OgreExport
 #define OGRE_AUTO_MUTEX

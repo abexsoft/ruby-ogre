@@ -18,4 +18,4 @@ $srcs = ["interface/ois_wrap.cpp"]
 $objs = $srcs.collect {|o| o.sub(/\.cpp|\.cc|\.cxx/, ".o")}
 $cleanfiles = $objs
 
-create_makefile('OIS')
+create_makefile('ois')

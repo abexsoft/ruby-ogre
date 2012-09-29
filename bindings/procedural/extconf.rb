@@ -20,4 +20,4 @@ $srcs = ["interface/procedural_wrap.cpp"]
 $objs = $srcs.collect {|o| o.sub(/\.cpp|\.cc|\.cxx/, ".o")}
 $cleanfiles = $objs
 
-create_makefile('Procedural')
+create_makefile('procedural')

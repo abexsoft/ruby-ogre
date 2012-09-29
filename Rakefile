@@ -120,42 +120,42 @@ namespace :compile do
   namespace :ext do
     DLEXT = RbConfig::MAKEFILE_CONFIG['DLEXT']
 
-    task :all => ["lib/OIS.#{DLEXT}", "lib/Ogre.#{DLEXT}", "lib/OgreBites.#{DLEXT}", "lib/Procedural.#{DLEXT}"] 
+    task :all => ["lib/ois.#{DLEXT}", "lib/ogre.#{DLEXT}", "lib/ogrebites.#{DLEXT}", "lib/procedural.#{DLEXT}"] 
 
     ## lib/*.#{DLEXT}
-    file "lib/OIS.#{DLEXT}" => "bindings/ois/OIS.#{DLEXT}" do |f|
+    file "lib/ois.#{DLEXT}" => "bindings/ois/ois.#{DLEXT}" do |f|
       cp f.prerequisites, "lib/", :preserve => true
     end
     
-    file "lib/Ogre.#{DLEXT}" => "bindings/ogre/Ogre.#{DLEXT}" do |f|
+    file "lib/ogre.#{DLEXT}" => "bindings/ogre/ogre.#{DLEXT}" do |f|
       cp f.prerequisites, "lib/", :preserve => true
     end
     
-    file "lib/OgreBites.#{DLEXT}" => "bindings/ogrebites/OgreBites.#{DLEXT}" do |f|
+    file "lib/ogrebites.#{DLEXT}" => "bindings/ogrebites/ogrebites.#{DLEXT}" do |f|
       cp f.prerequisites, "lib/", :preserve => true
     end
     
-    file "lib/Procedural.#{DLEXT}" => "bindings/procedural/Procedural.#{DLEXT}" do |f|
+    file "lib/procedural.#{DLEXT}" => "bindings/procedural/procedural.#{DLEXT}" do |f|
       cp f.prerequisites, "lib/", :preserve => true
     end
     
     ## ext/**/*.#{DLEXT}
-    file "bindings/ois/OIS.#{DLEXT}" => FileList["bindings/ois/Makefile"] do |f|
+    file "bindings/ois/ois.#{DLEXT}" => FileList["bindings/ois/Makefile"] do |f|
       sh 'cd bindings/ois/ && make clean && make'
     end
     CLEAN.include 'bindings/ois/*.{o,so,dll}'
     
-    file "bindings/ogre/Ogre.#{DLEXT}" => FileList["bindings/ogre/Makefile"] do |f|
+    file "bindings/ogre/ogre.#{DLEXT}" => FileList["bindings/ogre/Makefile"] do |f|
       sh 'cd bindings/ogre/ && make clean && make'
     end
     CLEAN.include 'bindings/ogre/*.{o,so,dll}'
     
-    file "bindings/ogrebites/OgreBites.#{DLEXT}" => FileList["bindings/ogrebites/Makefile"] do |f|
+    file "bindings/ogrebites/ogrebites.#{DLEXT}" => FileList["bindings/ogrebites/Makefile"] do |f|
       sh 'cd bindings/ogrebites && make clean && make'
     end
     CLEAN.include 'bindings/ogrebites/*.{o,so,dll}'
     
-    file "bindings/procedural/Procedural.#{DLEXT}" => FileList["bindings/procedural/Makefile"] do |f|
+    file "bindings/procedural/procedural.#{DLEXT}" => FileList["bindings/procedural/Makefile"] do |f|
       sh 'cd bindings/procedural/ && make clean && make'
     end
     CLEAN.include 'bindings/procedural/*.{o,so,dll}'
@@ -183,22 +183,22 @@ namespace :compile do
     
     ## make wrappers with swig.
     file 'bindings/ois/interface/ois_wrap.cpp' do
-      chdir('bindings/ois/interface') { sh 'make' }
+      chdir('bindings/ois/interface') { sh 'rake' }
     end
     CLEAN.include 'bindings/ois/interface/ois_wrap.{cpp,h,o}'
     
     file 'bindings/ogre/interface/ogre_wrap.cpp' do
-      chdir('bindings/ogre/interface') { sh 'make' }
+      chdir('bindings/ogre/interface') { sh 'rake' }
     end
     CLEAN.include 'bindings/ogre/interface/ogre_wrap.{cpp,h,o}'
     
     file 'bindings/ogrebites/interface/ogrebites_wrap.cpp' do
-      chdir('bindings/ogrebites/interface') { sh 'make' }
+      chdir('bindings/ogrebites/interface') { sh 'rake' }
     end
     CLEAN.include 'bindings/ogrebites/interface/ogrebites_wrap.{cpp,h,o}'
     
     file 'bindings/procedural/interface/procedural_wrap.cpp' do
-      chdir('bindings/procedural/interface') { sh 'make' }
+      chdir('bindings/procedural/interface') { sh 'rake' }
     end
     CLEAN.include 'bindings/procedural/interface/procedural_wrap.{cpp,h,o}'
   end
@@ -225,7 +225,7 @@ end
 #
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'Version'
+require 'version'
 
 spec = Gem::Specification.new do |s|
 
@@ -256,10 +256,10 @@ spec = Gem::Specification.new do |s|
                      'deps/lib/OGRE/*.dll',
                      'deps/include/**/*',
                      'deps/share/OGRE/media/**/*',
-                     'sample/Charactor/*.rb',
-                     'sample/Charactor/sinbad*',
-                     'sample/Charactor/resources.cfg',
-                     'sample/Charactor/plugins.cfg'
+                     'sample/charactor/*.rb',
+                     'sample/charactor/sinbad*',
+                     'sample/charactor/resources.cfg',
+                     'sample/charactor/plugins.cfg'
                     ].exclude('deps/share/OGRE/media/Makefile',
                               'deps/share/OGRE/media/CMakeFiles/**/*',
                               'deps/share/OGRE/media/cmake_install.cmake').to_a

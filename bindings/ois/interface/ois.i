@@ -1,3 +1,3 @@
-%module(directors="1") "OIS"
+%module(directors="1") "ois"
 
 %include ois_all.i

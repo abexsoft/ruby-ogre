@@ -1,4 +1,4 @@
-%module(directors="1") "Procedural"
+%module(directors="1") "procedural"
 
 #define _ProceduralExport
 

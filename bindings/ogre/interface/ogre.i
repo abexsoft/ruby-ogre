@@ -1,4 +1,4 @@
-%module(directors="1") "Ogre"
+%module(directors="1") "ogre"
 
 %include ogre_all.i
 

@@ -31,20 +31,22 @@ This is a wrapper library set converted by Swig. Swig is a excellent tool, but i
 several limitations to make complete wrapper interfaces.(ex. not supported nested class.)  
 So I list some notes here.
 
-### Documentation for original APIs.
+### Documents for original APIs.
 - [OIS](http://wgois.svn.sourceforge.net/viewvc/wgois/ois/trunk/)
 - [Ogre3D](http://www.ogre3d.org/docs/api/html/index.html)
-- [OgreProcedural](http://manual.ogreprocedural.org/)
+- [OgreProcedural](http://docs.ogreprocedural.org/)
 
 
 ### Basic Conversion
     ** C++ **
-    root = new Ogre::Root("")
-    root->initialise(true, "Sinbad")
+    root = new Ogre::Root("");
+    root->initialise(true, "Sinbad");
+    root->addFrameListener(this);
 
     ** Ruby **
     root = Ogre::Root.new("")
     root.initialise(true, "Sinbad")
+    root.add_frame_listener(self)
 
 
 ### Nested Class
@@ -54,20 +56,17 @@ Luckily, it does not matter so much because the main classes of Ogre are the top
 
 To be precise, swig has a workaroud for the nested class syntax that expands it
 to a top level class. I tried this (ref. bindings/ogre/interface/OgreResourceGroupManager.i),
-but it is not introduced for all of the nested classes and definitions.
+but it is not introduced into all of the nested classes and definitions. I'm grad to receive 
+some pull request or another cool idea about this.
 
-Please send me (or send a pull request) if you write these swig interface files or have another cool idea.
+### Iterator (complex template)
+There is another swig problem, template expansion. As same as the nested class problem, swig has
+a workaround but ogre has some complex templates enough to beat me =). Though I tried to fight these
+templates (see, bindings/ogre/interface/OgreConfigFile.i), I could not expand finally.
 
-### Iterator (crazy template)
-  There is another swig problem, template expansion. As same as the nested class problem, swig has
-  a workaround but ogre has some complex templates enough to beat me =). Though I tried to fight these
-  templates (see, bindings/ogre/interface/OgreConfigFile.i), I could not expand finally.
-
-  Instead, I took a policy to define "each" method on the class with the major iterator.
-  (see, bindings/ogre/interface/OgreConfigFile.i::each_Settings). But as same as the nested class problem,
-  I do not seem to have the patience enough to apply to all.
-
-  Please send me (or send a pull request) if you write these swig interface files or have another cool idea.
+Instead, I took a policy to define "each" method on the class with the major iterator.
+(see, bindings/ogre/interface/OgreConfigFile.i::each_Settings). But as same as the nested class problem,
+it is not introduced into all. I'm glad if I can receive some pull request or another cool idea about this.
 
      ** C++ **
      Ogre::ConfigFile cf;
@@ -92,14 +91,14 @@ Please send me (or send a pull request) if you write these swig interface files 
      ** Ruby **
      cf = Ogre::ConfigFile.new
      cf.load("./resources.cfg")
-     cf.each_Settings {|secName, typeName, archName|
-       Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+     cf.each_settings {|secName, typeName, archName|
+       Ogre::ResourceGroupManager::get_singleton().add_resource_location(
                 archName, typeName, secName)
      }
 
 ### Scope
-  Most ruby objects have a corresponding C++ object pointer. So it will occurs a segmentation fault 
-  if you store a root object into a local scope value, like the following example.
+Most ruby objects have a corresponding C++ object pointer. So it will occurs a segmentation fault 
+if you store a root object into a local scope value, like the following example.
 
     def init
       root = Ogre::Root.new("")
