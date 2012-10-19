@@ -28,8 +28,8 @@ namespace :download do
         sh "cp -a OgreSDK_MinGW_v1-8-0/lib ../"
         sh "cp -a OgreSDK_MinGW_v1-8-0/boost/lib/* ../lib"
       else
-        OGRE_FILE="ogre_src_v1-8-0.tar.bz2"
-        sh "wget http://sourceforge.net/projects/ogre/files/ogre/1.8/1.8.0/#{OGRE_FILE}"
+        OGRE_FILE="ogre_src_v1-8-1.tar.bz2"
+        sh "wget http://sourceforge.net/projects/ogre/files/ogre/1.8/1.8.1/#{OGRE_FILE}"
         sh "tar xjvf #{OGRE_FILE}"
       end
     }
@@ -76,7 +76,7 @@ namespace :compile do
 
     task :ogre do
       unless /mingw/ =~ RUBY_PLATFORM
-        chdir("deps/src/ogre_src_v1-8-0/") {
+        chdir("deps/src/ogre_src_v1-8-1/") {
           sh "cmake -DCMAKE_INSTALL_PREFIX:PATH=../.. -DOGRE_INSTALL_SAMPLES:BOOL=ON -DOIS_INCLUDE_DIR:PATH=$PWD/../../include/OIS -DOIS_LIBRARY_DBG:FILEPATH=$PWD/../../lib/libOIS.so -DOIS_LIBRARY_REL:FILEPATH=$PWD/../../lib/libOIS.so -DCMAKE_MODULE_LINKER_FLAGS:STRING='-static-libgcc -static-libstdc++' -DCMAKE_SHARED_LINKER_FLAGS:STRING='-static-libgcc -static-libstdc++'"
           sh "make -j4 && make install"
         }
@@ -219,7 +219,6 @@ task :doc => ['bindings/ois/interface/ois_wrap.cpp',
 
   sh "rdoc #{f.prerequisites.join(' ')}"
 end
-
 #
 # Gemspec
 #
@@ -263,6 +262,13 @@ spec = Gem::Specification.new do |s|
                     ].exclude('deps/share/OGRE/media/Makefile',
                               'deps/share/OGRE/media/CMakeFiles/**/*',
                               'deps/share/OGRE/media/cmake_install.cmake').to_a
+
+#  s.extra_rdoc_files = [
+#                        'bindings/ois/interface/ois_wrap.cpp',
+#                        'bindings/ogre/interface/ogre_wrap.cpp',
+#                        'bindings/ogrebites/interface/ogrebites_wrap.cpp',
+#                        'bindings/procedural/interface/procedural_wrap.cpp'
+#                       ]
 
   s.require_paths = ["lib"]
 end

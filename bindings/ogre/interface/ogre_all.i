@@ -1,6 +1,7 @@
 #define _OgreExport
 #define OGRE_AUTO_MUTEX
 #define OGRE_MUTEX(arg)
+#define OGRE_RW_MUTEX(arg)
 #define OGRE_STATIC_MUTEX(arg)
 #define OGRE_AUTO_SHARED_MUTEX
  /*

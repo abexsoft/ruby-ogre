@@ -35,7 +35,7 @@ class Sinbad < Ogre::FrameListener
   end
 
   def run
-    init_root()
+    return unless init_root()
     init_resources()
     init_managers()
     init_listeners()
@@ -60,9 +60,13 @@ class Sinbad < Ogre::FrameListener
     @root = Ogre::Root.new("")
     load_plugins()
 
-    return false unless @root.show_config_dialog()
-    @window = @root.initialise(true, "Sinbad")
-    @root.add_frame_listener(self)
+    if @root.show_config_dialog()
+      @window = @root.initialise(true, "Sinbad")
+      @root.add_frame_listener(self)
+      return true
+    end
+
+    return false
   end
 
   def load_plugins()
