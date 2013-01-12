@@ -1,0 +1,5 @@
+module Ruby
+  module Ogre
+    VERSION = "0.0.5"
+  end
+end

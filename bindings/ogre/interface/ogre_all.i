@@ -10,6 +10,15 @@ namespace Ogre{
 	class Degree;
 }
  */
+%exception {
+	try {
+		$action
+	} catch(Ogre::Exception& e) {
+		static VALUE cpperror = rb_define_class("CPPError", rb_eStandardError);
+		rb_raise(cpperror, "%s", e.getFullDescription().c_str());
+	}
+}
+
 
 %feature("valuewrapper") Ogre::ConstShadowTextureConfigIterator;
 class Ogre::ConstShadowTextureConfigIterator;

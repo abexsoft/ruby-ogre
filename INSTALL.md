@@ -21,4 +21,4 @@ How to compile all libraries.
 3. install ruby extension libraries and so on.
 
     > $ rake package  
-    > $ sudo gem install pkg/ruby-ogrelet-\<version>-\<arch>.gem  
+    > $ sudo gem install pkg/ruby-ogre-\<version>-\<arch>.gem  
