@@ -1,5 +1,7 @@
 #!/bin/sh
 
 FILE_PATH=`dirname "$0"`
+OGRE_DEPS_PATH=$FILE_PATH/../../deps
+OIS_DEPS_PATH=`ruby -e 'require "ruby-ois"; print "#{Ruby::Ois::get_top_path}"'`/deps
 
-LD_LIBRARY_PATH=$FILE_PATH/../../deps/lib:$LD_LIBRARY_PATH ruby $FILE_PATH/sinbad.rb
+LD_LIBRARY_PATH=${OGRE_DEPS_PATH}/lib:${OIS_DEPS_PATH}/lib:$LD_LIBRARY_PATH ruby $FILE_PATH/sinbad.rb

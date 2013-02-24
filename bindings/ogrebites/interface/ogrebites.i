@@ -19,8 +19,8 @@
 %include std_map.i
 %include std_multimap.i
 
-%import ../../ogre/interface/ogre_all.i
-%import ../../ois/interface/ois_all.i
+%import ogre_all.i
+%import ois_all.i
 
 %include SdkTrays.i
 %include SdkCameraMan.i

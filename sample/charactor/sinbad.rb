@@ -4,7 +4,7 @@ $LOAD_PATH.push(File.dirname(File.expand_path(__FILE__)) + "/../../lib")
 require "ogre"
 require "ois"
 require "ogrebites"
-require "ogre_config"
+require "ruby-ogre"
 require_relative "ui_listener"
 require_relative "camera_mover"
 require_relative "sinbad_character"
@@ -40,8 +40,8 @@ class Sinbad < Ogre::FrameListener
     init_managers()
     init_listeners()
     init_camera()
-
-    # load "General" group resources into ResourceGroupManager.
+ 
+   # load "General" group resources into ResourceGroupManager.
     @trayMgr.show_loading_bar(1, 0)
     Ogre::ResourceGroupManager::get_singleton().initialise_resource_group("General")
     @trayMgr.hide_loading_bar()
@@ -78,7 +78,7 @@ class Sinbad < Ogre::FrameListener
 
     cfg.each_settings {|secName, keyName, valueName|
       fullPath = pluginDir + valueName
-      fullPath.sub!("<SystemPluginFolder>", OgreConfig::get_plugin_folder)
+      fullPath.sub!("<SystemPluginFolder>", Ruby::Ogre::get_plugin_folder)
       @root.load_plugin(fullPath) if (keyName == "Plugin")
     }
   end
@@ -95,7 +95,7 @@ class Sinbad < Ogre::FrameListener
       next if (keyName == "ResourceFolder")
 
       fullPath = resourceDir + valueName
-      fullPath.sub!("<SystemResourceFolder>", OgreConfig::get_resource_folder)
+      fullPath.sub!("<SystemResourceFolder>", Ruby::Ogre::get_resource_folder)
       Ogre::ResourceGroupManager::get_singleton().add_resource_location(fullPath, 
                                                                         keyName, 
                                                                         secName)

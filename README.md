@@ -1,32 +1,42 @@
-ruby-ogre
-=================
+# ruby-ogre
 
-Overview
-----
-Ruby-ogre is a ruby extension library set for Ogre, OIS and OgreProcedural.
+Ruby-ogre is a ruby binding for Ogre.
 
+## Installation
 
-How to install
-----
-This project has a pre-compiled gem.  
+Add this line to your application's Gemfile:
 
-     $ sudo gem install pkg/ruby-ogre-<version>-<arch>.gem
+    gem 'ruby-ogre'
 
+And then execute:
 
-Usages
------
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install ruby-ogre
+
+## Usages
+
 Run a sample application.
 
-     $ /var/lib/gems/<ruby-version>/gems/ruby-ogre-<version>-<arch>/sample/Charactor/sinbad
+    $ /var/lib/gems/<ruby-version>/gems/ruby-ogre-<version>-<arch>/sample/Charactor/sinbad
 
 
-How to compile
-----
-see [INSTALL.md](https://github.com/abexsoft/ruby-ogre/blob/master/INSTALL.md)
+## How to install from source.
 
+If you want to compile from source, try the following.
 
-About APIs
-----
+    $ git clone git://github.com/abexsoft/ruby-ogre.git 
+    $ cd ruby-ogre 
+    $ rake download 
+    $ rake compile 
+    $ rake build 
+    $ gem build ruby-ogre.gemspec
+    $ gem install ruby-ogre-<version>-<arch>.gem 
+
+## About APIs
+
 This is a wrapper library set converted by Swig. Swig is a excellent tool, but it has
 several limitations to make complete wrapper interfaces.(ex. not supported nested class.)  
 So I list some notes here.

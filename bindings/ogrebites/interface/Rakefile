@@ -1,10 +1,8 @@
+require "ruby-ois"
+require_relative "../../../lib/ruby-ogre.rb"
+
 SWIG = 'swig'
-
-DEPS_DIR = "../../../deps/"
-load "../../../deps/env.rb"
-
-
-SWIGFLAGS = "-ruby -c++ #{OGRE_INC} #{OIS_INC} -autorename"
+SWIGFLAGS = "-ruby -c++ #{Ruby::Ogre::get_inc_flags} #{Ruby::Ois::get_inc_flags} -I#{Ruby::Ogre::get_top_path}/bindings/ogre/interface -I#{Ruby::Ois::get_top_path}/bindings/ois/interface  -autorename"
 
 TARGET = 'ogrebites_wrap.cpp'
 

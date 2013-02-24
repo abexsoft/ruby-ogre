@@ -1,10 +1,7 @@
+require_relative "../../../lib/ruby-ogre.rb"
+
 SWIG = 'swig'
-
-DEPS_DIR = "../../../deps/"
-load "../../../deps/env.rb"
-
-
-SWIGFLAGS = "-ruby -c++ #{OGRE_INC} -I../src/ -autorename"
+SWIGFLAGS = "-ruby -c++ #{Ruby::Ogre::get_inc_flags} -I../src/ -autorename"
 
 TARGET = 'ogre_wrap.cpp'
 

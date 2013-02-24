@@ -1,17 +1,14 @@
 require 'mkmf'
-
-DEPS_DIR = "../../deps"
-
-# set values of INC and LIB.
-load "#{DEPS_DIR}/env.rb"
+require "ruby-ois"
+require_relative "../../lib/ruby-ogre"
 
 # set flags
-$CFLAGS += " -g " + OGRE_INC + " " + OIS_INC
+$CFLAGS += " -g #{Ruby::Ogre::get_inc_flags} #{Ruby::Ois::get_inc_flags}"
 
 if (/mingw/ =~ RUBY_PLATFORM)
-  $LDFLAGS += " -static-libgcc -static-libstdc++ " + OGRE_LIB + " -lws2_32 -lwinmm"
+  $LDFLAGS += " -static-libgcc -static-libstdc++ #{Ruby::Ogre::get_lib_flags} -lws2_32 -lwinmm"
 else
-  $LDFLAGS += " -static-libgcc -static-libstdc++ " + OGRE_LIB
+  $LDFLAGS += " -static-libgcc -static-libstdc++ #{Ruby::Ogre::get_lib_flags}"
 end
 
 $srcs = ["interface/ogrebites_wrap.cpp"]
