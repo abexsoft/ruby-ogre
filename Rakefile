@@ -1,6 +1,24 @@
 require 'rake/clean'
 require 'ruby-ois'
 
+desc "Download a ruby-ogre gem from bitbucket."
+task :default do
+  require 'open-uri'
+
+  UPLOAD_SITE="http://cdn.bitbucket.org/abexsoft/ruby-ogre/downloads"
+  RUBY_OGRE_GEM="ruby-ogre-0.1.0-x86-linux.gem"
+
+  puts "Downloading #{RUBY_OGRE_GEM} from #{UPLOAD_SITE}..."
+  File.open("#{RUBY_OGRE_GEM}", "wb") do |gem_file|
+    open("#{UPLOAD_SITE}/#{RUBY_OGRE_GEM}", 'rb') do |read_file|
+      gem_file.write(read_file.read)
+    end
+  end
+
+  puts "Installing #{RUBY_OGRE_GEM}..."
+  system("gem install #{RUBY_OGRE_GEM}")
+end
+
 desc "Download a ogre source."
 task :download do
   FileUtils::mkdir_p("deps/src")
