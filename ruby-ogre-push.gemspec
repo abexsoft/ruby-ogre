@@ -7,18 +7,13 @@ Gem::Specification.new do |gem|
   gem.version       = Ruby::Ogre::VERSION
   gem.authors       = ["abexsoft"]
   gem.email         = ["abexsoft@gmail.com"]
-  gem.description   = %q{Ruby bindings for Ogre.}
-  gem.summary       = %q{Ruby bindings for Ogre.}
+  gem.description   = %q{Ruby bindings for Ogre. Note that this ruby-ogre gem downloads a real ruby-ogre gem from bitbucket site and then installs it.}
+  gem.summary       = gem.description
   gem.homepage      = "https://github.com/abexsoft/ruby-ogre"
   gem.platform      = Gem::Platform::CURRENT
 
-  gem.files         = Dir['Gemfile',
-		          'Rakefile',
-			  'README.md',
-                          'INSTALL.md',
-                          'LICENSE',
+  gem.files         = Dir['Rakefile',
                           'ruby-ogre-push.gemspec',
-                          'lib/ruby-ogre/version.rb'
                          ]
 
   gem.extensions    = ['Rakefile']
